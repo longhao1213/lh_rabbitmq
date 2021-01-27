@@ -1,4 +1,4 @@
-package com.lh;
+package com.lh.old.work;
 
 
 import com.rabbitmq.client.Channel;
@@ -18,7 +18,7 @@ import java.util.concurrent.TimeoutException;
  * @Date 2021/01/26 16:15
  */
 public class Send {
-    private final static String QUEUE_NAME = "hello";
+    private final static String QUEUE_NAME = "work";
 
     public static void main(String[] args) throws IOException, TimeoutException {
         // 创建连接
@@ -47,17 +47,20 @@ public class Send {
              * 队列不存在则会自动创建，如果存在则不会覆盖，所以此时的时候需要注意属性
              */
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-            String message = "hello rabbit";
+            for (int i = 0; i < 10; i++) {
+                String message = "hello rabbit" + i;
 
-            /**
-             * 参数说明：
-             * 交换机名称：不写则是默认的交换机，那路由健需要和队列名称一样才可以被路由，
-             * 路由健名称
-             * 配置信息
-             * 发送的消息数据：字节数组
-             */
-            channel.basicPublish("", QUEUE_NAME, null, message.getBytes(StandardCharsets.UTF_8));
-            System.out.println("消息已发送,消息内容:" + message);
+                /**
+                 * 参数说明：
+                 * 交换机名称：不写则是默认的交换机，那路由健需要和队列名称一样才可以被路由，
+                 * 路由健名称
+                 * 配置信息
+                 * 发送的消息数据：字节数组
+                 */
+                channel.basicPublish("", QUEUE_NAME, null, message.getBytes(StandardCharsets.UTF_8));
+                System.out.println("消息已发送,消息内容:" + message);
+            }
+
         }
     }
 }

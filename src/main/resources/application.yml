@@ -1,0 +1,10 @@
+
+spring:
+  rabbitmq:
+    host: longsan
+    port: 5672
+    virtual-host: /dev
+    password: 123456
+    username: admin
+server:
+  port: 8111
