@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * @version 1.0.0
  * @Date 2021/01/27 17:12
  */
-@Configuration
+//@Configuration
 public class RabbitMQConfig {
     public static final String EXCHANGE_NAME = "order_exchange";
 

@@ -6,5 +6,17 @@ spring:
     virtual-host: /dev
     password: 123456
     username: admin
+#    # 开启消息二次确认 生产者到broken的交换机
+#    publisher-confirm-type: correlated
+#    # 开启消息二次确认,交换机到消费者的可靠性投递
+#    publisher-returns: true
+#    # 为true,则交换机处理消息到路由失败，则会返回给生产者
+#    template:
+#      mandatory: true
+
+    # 开启消息的ack手动确认
+    listener:
+      simple:
+        acknowledge-mode: manual
 server:
   port: 8111
